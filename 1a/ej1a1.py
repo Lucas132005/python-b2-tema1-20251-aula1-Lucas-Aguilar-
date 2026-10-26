@@ -35,38 +35,57 @@ el bytearray modificado.
 
 from typing import ByteString, Union
 
-
 def text_to_bytes(text: str) -> bytes:
     # Write here your code
+    byte_change = bytes(text,encoding = "utf-8")
+    return byte_change
     pass
 
 
 def reverse_bytes(bytes_data: ByteString) -> bytearray:
     # Write here your code
+    bytearray_change = bytearray(bytes_data)
+    bytearray_reversed_list = []
+    for i in bytearray_change:
+        bytearray_reversed_list.insert(0,i)
+    bytearray_reversed = bytearray(bytearray_reversed_list)
+    return bytearray_reversed
     pass
 
 
 def increment_bytearray_rollover(byte_array: bytearray) -> bytearray:
     # Write here your code
+    bytes_list = []
+    for i in byte_array:
+        if i+1 == 256:
+            bytes_list.insert(-1,0)
+        else:
+            bytes_list.insert(-1,i+1)
+    bytearray_plus = bytearray(bytes_list)
+    return bytearray_plus
     pass
 
 
 def bytes_to_text(bytes_data: Union[bytes, bytearray]) -> str:
     # Write here your code
+    text = str(bytes_data,encoding="utf-8")
+    return text
     pass
 
 
-# Para probar el código, descomenta las siguientes líneas
-# if __name__ == "__main__":
-#     original_text = "Hola Mundo!"
-#     original_bytes = text_to_bytes(original_text)
-#     print("Original Bytes:", original_bytes)
 
-#     reversed_bytearray = reverse_bytes(original_bytes)
-#     print("Reversed Bytearray:", reversed_bytearray)
 
-#     modified_bytearray = increment_bytearray_rollover(reversed_bytearray)
-#     print("Modified Bytearray:", modified_bytearray)
+#Para probar el código, descomenta las siguientes líneas
+if __name__ == "__main__":
+ original_text = "Hola Mundo!"
+ original_bytes = text_to_bytes(original_text)
+ print("Original Bytes:", original_bytes)
 
-#     processed_text = bytes_to_text(modified_bytearray)
-#     print("Processed Text:", processed_text)
+ reversed_bytearray = reverse_bytes(original_bytes)
+ print("Reversed Bytearray:", reversed_bytearray)
+
+ modified_bytearray = increment_bytearray_rollover(reversed_bytearray)
+ print("Modified Bytearray:", modified_bytearray)
+
+ processed_text = bytes_to_text(modified_bytearray)
+ print("Processed Text:", processed_text)
